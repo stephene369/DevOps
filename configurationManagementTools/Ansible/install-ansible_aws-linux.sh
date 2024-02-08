@@ -1,5 +1,9 @@
 #!bin/bash
 
+# simple way
+sudo yum ansible 
+sudo yum install git 
+
 ###################### Install ansible from repository ################################
 
 ## install 
