@@ -1,0 +1,34 @@
+# Bootstrap webservers With variable
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Install httpd
+      yum:
+        name: "{{ target_service }}"
+        state: latest
+
+    - name: Create html directory if it does not exist
+      file:
+        path: /var/www/html
+        state: directory
+
+    - name: Create index.html file
+      file:
+        path: /var/www/html/index.html
+        state: touch
+
+    - name: Add web content
+      lineinfile:
+        line: "Here is some text"
+        path: /var/www/html/index.html
+
+    - name: Start httpd
+      service:
+        name: "{{ target_service }}"
+        state: started
+
+
+## In this cate the command will be : 
+## ansible-playbook -i inv web.yml -e "target_service=httpd"
+
+
