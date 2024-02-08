@@ -30,5 +30,25 @@ sudo useradd <user-name>
 
 To remove the user use 
 sudo userdel -r <user name>
-
 " 
+
+
+################ change user as ansibel 
+sudo su - ansible 
+
+## Generate ssh key 
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+ssh-keygen
+
+########################### To enalble connection without password and key pem #####
+"
+copy the encrypted key in id_rsa.pub of the host to to 
+authaurized key of the hosts servers 
+"
+
+
+
+
+
+
