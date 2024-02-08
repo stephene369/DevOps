@@ -1,0 +1,39 @@
+# Bootstrap webservers With variable
+# Bootstrap webservers With variable
+- hosts: webservers
+  gather_facts: yes
+  become: yes
+  tasks:
+    - debug:
+        var: target_service
+
+    - name: Install httpd
+      yum:
+        name: "{{ target_service }}"
+        state: latest
+
+
+    - name: Create html directory if it does not exist
+      file:
+        path: /var/www/html
+        state: directory
+
+    - name: Create index.html file
+      file:
+        path: /var/www/html/index.html
+        state: touch
+
+    - name: Add web content
+      lineinfile:
+        line: "{{ ansible_hostname }}"
+        path: /var/www/html/index.html
+
+      register: task_debug
+
+    - debug:
+        msg: "Output of lineinfile is {{ task_debug }}"
+
+    - name: Start httpd
+      service:
+        name: "{{ target_service }}"
+        state: started
