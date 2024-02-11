@@ -49,7 +49,8 @@ kubectl apply -f train-kube.yml
 kubectl get pods -w 
 
 
-
+#### Monitoring request : 
+sum(rate(http_request_duration_ms_count[2m])) by (service, route, method, code)
 
 
 
