@@ -1,5 +1,16 @@
 #!bin/bash
 
+#################### ON AWS EC2 linux 
+sudo yum update -y
+
+sudo yum install -y epel-release
+sudo yum install -y ansible
+
+ansible — version
+
+sudo nano /etc/ansible/hosts
+
+
 ### on ubuntu 
 
 sudo apt update
